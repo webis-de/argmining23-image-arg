@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "feeds"
+version = "1.0"
+authors = [
+  { name="webis", email="islam.torky.alaaeldean.mohamed.abdel.torky@uni-weimar.de" },
+]
+description = "feeds project"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "matplotlib",
+    "pandas",
+    "torch",
+    "torchvision",
+    "pycocotools"
+]
