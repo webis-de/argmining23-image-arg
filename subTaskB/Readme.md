@@ -1,9 +1,12 @@
+# Multimodal Persuasiveness Classifier
 
-# To use the CLIP models
+This repository contains code to train and evaluate a multimodal persuasiveness classification model using the CLIP (Contrastive Language-Image Pre-training) model. The goal of this code is to classify the persuasiveness of textual content with associated images.
 
-Install a conda env w/ Python 3.8 conda create --name conda_env python=3.8
-Install torch 1.7.1, needed for clip, via conda: conda install --yes -c pytorch pytorch=1.7.1 torchvision cudatoolkit=11.0
+## Introduction
 
-pip install ftfy regex tqdm pandas stweet
+The codebase provides the following main functionalities:
 
-pip install git+https://github.com/openai/CLIP.git
+- **Training**: It trains a downstream classification model for persuasiveness using both text and image inputs.
+- **Evaluation**: The trained model is evaluated on a validation dataset to assess its performance.
+- **Logging**: Training and validation loss values are logged and saved in a CSV file for analysis.
+- **Model Saving**: The trained downstream model can be saved for future use.
