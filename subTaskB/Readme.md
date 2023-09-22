@@ -1,16 +1,8 @@
 
-# To use the CLIP models
+# Usage of CLIP Pretrained Model Softmax
 
-Install a conda env w/ Python 3.8 conda create --name conda_env python=3.8
+Please change the following paths to your own paths:
 
-</b>
-
-Install torch 1.7.1, needed for clip, via conda: conda install --yes -c pytorch pytorch=1.7.1 torchvision cudatoolkit=11.0
-
-</b>
-
-pip install ftfy regex tqdm pandas stweet
-
-</b>
-
-pip install git+https://github.com/openai/CLIP.git
+- train_csv 
+- valid_csv 
+- image_folder
