@@ -165,19 +165,16 @@ def evaluate(
         f"Epoch {epoch + 1}/{num_epochs} - Train Loss: {train_loss:.4f} - Train Acc: {train_accuracy:.2f}% - "
         f"Val Loss: {val_loss:.4f} - Val Acc: {val_accuracy:.2f}%"
     )
-    # Print cosine similarity values and predicted labels side by side
     if epoch == 9:
         print("Cosine Similarity\tPredicted Label\tTrue Label")
         for cos_sim, pred_label, true_label in zip(val_cos_sim_values, val_predicted_labels, val_true_labels):
             print(f"{cos_sim:.4f}\t\t\t\t\t{pred_label}\t\t\t\t\t{true_label}")
 
-        # Sort cosine similarity values in ascending order
         sorted_indices = sorted(range(len(val_cos_sim_values)), key=val_cos_sim_values.__getitem__)
         sorted_cos_sim_values = [val_cos_sim_values[i] for i in sorted_indices]
         sorted_predicted_labels = [val_predicted_labels[i] for i in sorted_indices]
         sorted_true_labels = [val_true_labels[i] for i in sorted_indices]
 
-        # Save cosine similarity values, predicted labels, and true labels to a CSV file
         data = {
             'Cosine Similarity': sorted_cos_sim_values,
             'Predicted Label': sorted_predicted_labels,
@@ -185,9 +182,6 @@ def evaluate(
         }
         df = pd.DataFrame(data)
         df.to_csv('Cos_sim_val_pred_labels')
-
-        # Visualize cosine similarity values and predicted labels
-        #visualize_cos_sim_labels(val_cos_sim_values, val_predicted_labels)
 
     return val_loss, val_correct, val_predicted_labels, val_true_labels
 

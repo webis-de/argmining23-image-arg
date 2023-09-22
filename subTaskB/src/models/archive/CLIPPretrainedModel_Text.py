@@ -11,21 +11,18 @@ from main_TaskB.src.utils.utils import  save_val_labels
 class CustomModel(nn.Module):
     def __init__(self, num_classes, clip_feature_size, character_count_feature_size):
         super(CustomModel, self).__init__()
-        self.fc1 = nn.Linear(clip_feature_size, 2)  # First layer for CLIP features
-        self.fc2 = nn.Linear(2 + character_count_feature_size, num_classes)  # Second layer with infographic feature
+        self.fc1 = nn.Linear(clip_feature_size, 2)
+        self.fc2 = nn.Linear(2 + character_count_feature_size, num_classes)
 
     def forward(self, image_features, character_count_feature):
-        # Pass the CLIP image features through the first fully connected layer
         out = self.fc1(image_features)
         out = nn.ReLU()(out)
 
-        # Add a new dimension to infographic_feature to match the batch_size
         character_count_feature = character_count_feature.unsqueeze(1)
 
-        # Concatenate the output of the first layer with the infographic feature
         combined_features = torch.cat([out, character_count_feature], dim=-1)
 
-        # Pass the combined features through the second fully connected layer
+
         out = self.fc2(combined_features)
 
         return out
@@ -34,22 +31,12 @@ def check_character_count(image_path: str) -> torch.Tensor:
     image = cv2.imread(image_path)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-    # Convert the image from torch.Tensor to numpy array
-    #image_np = image.squeeze(0).permute(1, 2, 0).cpu().numpy()
-
-    # Convert the image to grayscale
-    #gray = cv2.cvtColor(image_np, cv2.COLOR_RGB2GRAY)
-
-    # Perform OCR to extract text from the image
     extracted_text = pytesseract.image_to_string(gray)
 
-    # Count the number of characters in the extracted text
     num_characters = len(extracted_text)
 
-    # Create a binary feature based on the presence of text
     has_text = 1.0 if num_characters > 0 else 0.0
 
-    # Convert the count of characters to a tensor
     character_count_feature = torch.tensor([num_characters], dtype=torch.float)
 
     return character_count_feature

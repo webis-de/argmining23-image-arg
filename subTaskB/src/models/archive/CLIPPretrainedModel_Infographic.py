@@ -13,43 +13,33 @@ import torch.nn as nn
 class CustomModel(nn.Module):
     def __init__(self, num_classes, clip_feature_size, infographic_feature_size):
         super(CustomModel, self).__init__()
-        self.fc1 = nn.Linear(clip_feature_size, 2)  # First layer for CLIP features
-        self.fc2 = nn.Linear(2 + infographic_feature_size, num_classes)  # Second layer with infographic feature
+        self.fc1 = nn.Linear(clip_feature_size, 2)  
+        self.fc2 = nn.Linear(2 + infographic_feature_size, num_classes)  
 
     def forward(self, image_features, infographic_feature):
-        # Pass the CLIP image features through the first fully connected layer
         out = self.fc1(image_features)
         out = nn.ReLU()(out)
 
-        # Add a new dimension to infographic_feature to match the batch_size
         infographic_feature = infographic_feature.unsqueeze(1)
 
-        # Concatenate the output of the first layer with the infographic feature
         combined_features = torch.cat([out, infographic_feature], dim=-1)
 
-        # Pass the combined features through the second fully connected layer
         out = self.fc2(combined_features)
 
         return out
 
 
 def check_infographic(image: torch.Tensor) -> torch.Tensor:
-    # Convert the image from torch.Tensor to numpy array
     image_np = image.squeeze(0).permute(1, 2, 0).cpu().numpy()
 
-    # Convert the image to grayscale
     gray = cv2.cvtColor(image_np, cv2.COLOR_RGB2GRAY)
 
-    # Threshold the image to create a binary image
     _, binary = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY)
 
-    # Count the number of white pixels in the binary image
     white_pixel_count = cv2.countNonZero(binary)
 
-    # Define a threshold value, may need to be adjusted
     infographic_threshold = 0.1 * image_np.shape[0] * image_np.shape[1]
 
-    # Check if the number of white pixels exceeds the threshold
     infographic_feature = torch.tensor([1.0]) if white_pixel_count > infographic_threshold else torch.tensor([0.0])
 
     return infographic_feature
