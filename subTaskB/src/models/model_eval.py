@@ -94,8 +94,8 @@ if __name__ == "__main__":
     tokenizer = CLIPTokenizer.from_pretrained("openai/clip-vit-base-patch32")
 
     dataset = Imageargdataset(
-        csv_file=r"main-TaskB\feeds\ImageArg\data\gun_control_train.csv",
-        image_file=r"main-TaskB\feeds\ImageArg\data\images\gun_control",
+        csv_file=r"YOUR_TRAIN_CSV.csv",
+        image_folder=r"YOUR_IMAGE_FOLDER",
         tokenizer=tokenizer,
         transforms=image_transform,
     )
@@ -104,18 +104,10 @@ if __name__ == "__main__":
         dataset, batch_size=1, shuffle=True, num_workers=2
     )
 
-    # model1 = ResNet(10).to(device)
     model1 = CLIPClassifier("ViT-B/32")
-    # model1 = RandomClassModel(2).to(device)
 
     accuracy, confus_matrix = evaluate_model(model1, dataloader, device, "task_b")
     print_confus_heatmap(confus_matrix)
 
     print("plotting losses and accuracies")
     print(accuracy, confus_matrix)
-
-    # TODO evaluator can build the predictions file for the competition
-    # TODO Change interface according to CLIP (check output and inputs)
-
-    # TODO check pretrained weight and model usage
-    # backbone usage and downstream NN with softmax class probabilities

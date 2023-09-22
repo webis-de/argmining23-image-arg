@@ -6,7 +6,7 @@ import csv
 from typing import Tuple, List
 
 import sys
-sys.path.append('/Users/torky/Documents/project-multimodal-sequence-representations-for-feed-data/main_TaskB/src')
+sys.path.append('../../src')
 
 from utils.utils import save_val_labels
 from dataset.CustomDataset import Imageargdataset
@@ -239,9 +239,9 @@ def main(
         None
     """
     model, preprocess = backbone_model
-    train_csv = r"/Users/torky/Desktop/University Work/Feeds/ImageArg/data/Uncleaned/gun_control_train_balance_uncleaned.csv"
-    valid_csv = r"/Users/torky/Desktop/University Work/Feeds/ImageArg/data/Uncleaned/gun_control_dev_uncleaned.csv"
-    image_folder = r"/Users/torky/Desktop/University Work/Feeds/ImageArg/data/images/gun_control"
+    train_csv = r"YOUR_TRAIN_CSV.csv"
+    valid_csv = r"YOUR_VALID_CSV.csv"
+    image_folder = r"/foo/bar/YOUR_IMAGE_FOLDER/"
     train_dataset = Imageargdataset(train_csv, image_folder)
     valid_dataset = Imageargdataset(valid_csv, image_folder)
     classification_model = downstream_model

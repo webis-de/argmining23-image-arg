@@ -59,8 +59,3 @@ def save_val_labels(
         )
     )
     np.savetxt("val_labels.csv", val_labels, delimiter=",", fmt="%d")
-
-
-#_, F1=get_metrics("../utils/val_labels.csv",
-#                "../utils/confusion_matrix.png")
-#print(F1)

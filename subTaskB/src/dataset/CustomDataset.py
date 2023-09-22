@@ -4,10 +4,10 @@ from torch.utils.data import Dataset
 
 
 class Imageargdataset(Dataset):
-    def __init__(self, csv_file: str, image_file: str, tokenizer=None, transforms=None):
+    def __init__(self, csv_file: str, image_folder: str, tokenizer=None, transforms=None):
         self.data = pd.read_csv(csv_file)
         self.tokenizer = tokenizer
-        self.image_file = image_file
+        self.image_file = image_folder
         self.transforms = transforms
 
     def __len__(self):

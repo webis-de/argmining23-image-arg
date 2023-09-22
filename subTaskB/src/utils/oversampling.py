@@ -51,7 +51,7 @@ def balance_dataset(input_csv, output_csv):
 
 
 if __name__ == "__main__":
-    input_csv = "../feeds/ImageArg/data/gun_control_dev.csv"
-    output_csv = "../feeds/ImageArg/data/gun_control_dev_balance.csv"
+    input_csv = "INPUT_CSV.csv"
+    output_csv = "OUTPUT_CSV.csv"
     balance_dataset(input_csv, output_csv)
-    check_class_imbalance("../feeds/ImageArg/data/gun_control_dev_balance.csv")
+    check_class_imbalance("YOUR_CSV.csv")
