@@ -194,9 +194,9 @@ def evaluate(
 
 def main(backbone_model, downstream_model, device):
     model, preprocess = backbone_model
-    train_csv = r"..\feeds\ImageArg\data\gun_control_train.csv"
-    valid_csv = r"..\feeds\ImageArg\data\gun_control_dev.csv"
-    image_folder = r"..\feeds\ImageArg\data\images\gun_control"
+    train_csv = r""
+    valid_csv = r""
+    image_folder = r""
     train_dataset = Imageargdataset(train_csv, image_folder)
     valid_dataset = Imageargdataset(valid_csv, image_folder)
     classification_model = downstream_model
