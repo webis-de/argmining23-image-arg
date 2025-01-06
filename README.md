@@ -17,9 +17,13 @@ Our approach for Subtask B secured the first position with an F1 score of 0.56. 
 Please note that the dataset used for this competition is not included in this repository. You can obtain the dataset from https://imagearg.github.io/
 
 ## Conclusion
-Our participation in ImageArg 2023 provided valuable insights into the challenges and opportunities in multi-modal analysis, combining visual and textual information for argumentative analysis. We look forward to potential future research directions in this field.
+Our participation in ImageArg 2023 provided valuable insights into the challenges and opportunities in multi-modal analysis, combining visual and textual information for argumentative analysis. For more detailed information, please refer to our paper:
+
+[Link to Paper](https://aclanthology.org/2023.argmining-1.16/)
 
 For inquiries or collaborations, please feel free to reach out to our team.
+
+We look forward to potential future research directions in this field.
 
 Best regards,
 Team "feeds
